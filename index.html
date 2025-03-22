@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .converter {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Currency Converter</h1>
+        <form method="post">
+            <input type="number" name="amount" placeholder="Amount" required>
+            <select name="from_currency" required>
+                {% for currency in currencies %}
+                <option value="{{ currency }}">{{ currency }}</option>
+                {% endfor %}
+            </select>
+            <select name="to_currency" required>
+                {% for currency in currencies %}
+                <option value="{{ currency }}">{{ currency }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+        {% if result %}
+        <p class="result">{{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
